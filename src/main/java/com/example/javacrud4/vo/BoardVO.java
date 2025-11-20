@@ -10,6 +10,19 @@ public class BoardVO {
     private Timestamp regdate;
     private int cnt;
 
+    // 생성자
+    public BoardVO(){}
+
+    // 전체 생성자
+    public BoardVO(int id, String title, String writer, String content, Timestamp regdate, int cnt) {
+        this.id = id;
+        this.title = title;
+        this.writer = writer;
+        this.content = content;
+        this.regdate = regdate;
+        this.cnt = cnt;
+    }
+
     // getter/setter
     public int getId() {
         return id;
