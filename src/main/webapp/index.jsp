@@ -9,6 +9,7 @@
 </h1>
 <br/>
 
-<a href="write.jsp"> Write.jsp로 이동 </a>
+<a href="write.jsp"> Write.jsp로 이동 </a> <br>
+<a href="list.jsp"> list.jsp로 이동 </a>
 </body>
 </html>

@@ -18,16 +18,13 @@ public class BoardDAO {
     private final String Board_DELETE = "";
     private final String Board_Get = "";
 
-    Connection conn = null;
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
 
     // 데이터 추가하기
     public int insertList(BoardVO vo){
 
-        try{
-            conn = JDBCUtil.getConnection();
-            pstmt = conn.prepareStatement(Board_INSERT);
+        try(Connection conn = JDBCUtil.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(Board_INSERT);
+        ){
             pstmt.setString(1, vo.getTitle());
             pstmt.setString(2, vo.getWriter());
             pstmt.setString(3, vo.getContent());
@@ -64,7 +61,7 @@ public class BoardDAO {
                 }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return list;
     }
