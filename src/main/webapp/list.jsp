@@ -31,6 +31,8 @@ wirte_ok.jsp에서 바로 list로 이동하도록
 
 
 list 개선: 번호 / 제목 / 작성자 / 내용 30줄 이내 정도까지만 보이게 / 날짜는 년도.월.일 까지만
+        : 글 제목으로 들어가게 하도록 (상세 페이지로)
+        : 버튼 만들기 (글 추가, 글 삭제, 글 수정)
 
 --%>
 <html>
@@ -47,6 +49,7 @@ list 개선: 번호 / 제목 / 작성자 / 내용 30줄 이내 정도까지만 �
         <th>작성자</th>
         <th>내용</th>
         <th>날짜</th>
+        <th>관리(수정/삭제)</th>
     </tr>
 
     <%
@@ -61,6 +64,17 @@ list 개선: 번호 / 제목 / 작성자 / 내용 30줄 이내 정도까지만 �
         <td><%=vo.getWriter()%></td>
         <td><%=vo.getContent()%></td>
         <td><%=vo.getRegdate()%></td>
+        <td>
+            <a href="edit.jsp?id=<%=vo.getId()%>">
+                수정
+            </a>
+        </td>
+        <td>
+            <a href="delete_ok.jsp?id=<%=vo.getId()%>"
+                onclick="return confirm('정말 삭제하시겠습니까?');">
+                삭제
+            </a>
+        </td>
     </tr>
     <%
         }

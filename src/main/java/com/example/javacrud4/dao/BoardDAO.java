@@ -15,7 +15,7 @@ public class BoardDAO {
     private final String Board_LIST = "select * from Board order by id ASC"; // 오름차순 정렬로 들고오기
     private final String Board_INSERT = "INSERT INTO Board (title, writer, content) values (?,?,?)";
     private final String Board_UPDATE = "";
-    private final String Board_DELETE = "";
+    private final String Board_DELETE = "delete from Board where id =?";
     private final String Board_Get = "";
 
 
@@ -64,5 +64,20 @@ public class BoardDAO {
             System.out.println(e.getMessage());
         }
         return list;
+    }
+    
+    // 목록 삭제하기
+    public int deleteList(int id){
+        try(Connection conn = JDBCUtil.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(Board_DELETE)
+        ){
+            pstmt.setInt(1, id);
+            return pstmt.executeUpdate(); // 성공하면 1 반환, 실패하면 0 반환
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return 0;
     }
 }
