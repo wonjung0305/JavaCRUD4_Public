@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form action="write_ok.jsp" method="post">
+<form action="write_ok.jsp" method="get">
     <table>
         <tr>
             <td>Title: </td>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td>Content: </td>
-            <td><textarea cols="50" rows="5" name="content" /></td>
+            <td><textarea cols="50" rows="3" name="content"> </textarea></td>
         </tr>
 
         <td><input type="submit" value="Add" /></td>

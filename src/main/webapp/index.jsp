@@ -8,6 +8,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+
+<a href="write.jsp"> Write.jsp로 이동 </a>
 </body>
 </html>

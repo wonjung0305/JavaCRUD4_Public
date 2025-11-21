@@ -24,6 +24,7 @@ public class BoardDAO {
 
     // 데이터 추가하기
     public int insertList(BoardVO vo){
+
         try{
             conn = JDBCUtil.getConnection();
             pstmt = conn.prepareStatement(Board_INSERT);
@@ -31,7 +32,7 @@ public class BoardDAO {
             pstmt.setString(2, vo.getWriter());
             pstmt.setString(3, vo.getContent());
             pstmt.executeUpdate(); // 결과 저장
-
+            
             return 1;
 
         } catch (SQLException e) {
