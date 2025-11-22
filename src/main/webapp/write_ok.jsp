@@ -6,21 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="com.example.javacrud4.dao.BoardDAO" %>
-
 <% request.setCharacterEncoding("UTF-8"); %>
+<%@page import="com.example.javacrud4.dao.BoardDAO" %>
 
 <jsp:useBean id="user" class="com.example.javacrud4.vo.BoardVO" />
 <jsp:setProperty name="user" property="*" />
 
 <%
-
-
     BoardDAO boardDAO = new BoardDAO();
     int i = boardDAO.insertList(user);
 
     String msg = "데이터 추가 성공";
     if(i == 0) msg = "[Error] 데이터 추가 실패";
+
+    response.sendRedirect("list.jsp");
 %>
 
 <html>
@@ -28,7 +27,6 @@
     <title>Title</title>
 </head>
 <body>
-<a href="index.jsp">index로 이동</a>
 
 </body>
 

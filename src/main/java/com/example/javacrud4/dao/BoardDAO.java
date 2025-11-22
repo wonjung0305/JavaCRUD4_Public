@@ -16,7 +16,7 @@ public class BoardDAO {
     private final String Board_INSERT = "INSERT INTO Board (title, writer, content) values (?,?,?)";
     private final String Board_UPDATE = "";
     private final String Board_DELETE = "delete from Board where id =?";
-    private final String Board_Get = "";
+    private final String Board_SEARCH = "select * from Board where title like ? or writer like ? or content like ?";
 
 
     // 데이터 추가하기
@@ -79,5 +79,36 @@ public class BoardDAO {
         }
 
         return 0;
+    }
+
+    public List<BoardVO> search(String keyword){
+        List<BoardVO> list = new ArrayList<>();
+
+        try(Connection conn = JDBCUtil.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(Board_SEARCH)
+        ){
+            String searchWord = "%"+keyword+"%";
+
+            pstmt.setString(1, searchWord);
+            pstmt.setString(2, searchWord);
+            pstmt.setString(3, searchWord);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                BoardVO info = new BoardVO();
+                info.setId(rs.getInt("id"));
+                info.setTitle(rs.getString("title"));
+                info.setWriter(rs.getString("writer"));
+                info.setContent(rs.getString("content"));
+                info.setRegdate(rs.getTimestamp("regdate"));
+                info.setCnt(rs.getInt("cnt"));
+                list.add(info);
+            }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return list;
     }
 }

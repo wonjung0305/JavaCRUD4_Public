@@ -1,15 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% request.setCharacterEncoding("UTF-8"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
+<%@include file="header.jsp"%>
 
-<a href="write.jsp"> Write.jsp로 이동 </a> <br>
-<a href="list.jsp"> list.jsp로 이동 </a>
+<%
+    response.sendRedirect("list.jsp");
+%>
+
+<%@include file="footer.jsp"%>
 </body>
 </html>
